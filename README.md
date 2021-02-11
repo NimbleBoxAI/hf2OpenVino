@@ -1,5 +1,5 @@
 # hf2OpenVino
-Scripts to optimize any huggingface model, run the script:
+Scripts to optimize any huggingface model. Before running the script you will have to modify the hugginface code to avoid `TracerWarnings`. Once this script is run you will see a tracer warning, you will have to manually delete the problematic piece.
 ```
 python3 converter.py --name=gpt2 \
 --auto=AutoModelWithLMHead \
@@ -8,6 +8,16 @@ python3 converter.py --name=gpt2 \
 --export_ov=./gpt2export \
 --export_onnx=./gpt2export/gpt2.onnx
 ```
+
+For example the above code throws error in `modeling_gpt2.py` file:
+```python
+if not self.is_cross_attention:
+  # if only "normal" attention layer implements causal mask
+  mask = self.bias[:, :, ns - nd : ns, :ns]
+  w = torch.where(mask.bool(), w, self.masked_bias.to(w.dtype))
+```
+
+This part would need to be commented out.
 
 
 ## Installation
