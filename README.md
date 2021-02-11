@@ -1,5 +1,13 @@
 # hf2OpenVino
-Scripts to optimize any huggingface model.
+Scripts to optimize any huggingface model, run the script:
+```
+python3 converter.py --name=gpt2 \
+--auto=AutoModelWithLMHead \
+--ov_folder=../openvino/openvino_2021 \
+--size=1,2,3 \
+--export_ov=./gpt2export \
+--export_onnx=./gpt2export/gpt2.onnx
+```
 
 
 ## Installation

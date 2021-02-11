@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+bin/
+lib/
+.DS_Store
+pyvenv.cfg
+.python-version
+share/
+*.onnx
+gpt2export/
